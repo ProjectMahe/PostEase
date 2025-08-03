@@ -53,6 +53,7 @@
       display: inline-flex;
       align-items: center;
       font-size: 15px;
+      cursor: pointer;
     }
     .icons {
       width: 20px;
@@ -97,9 +98,9 @@
   <div class="container">
     <h1>📢 Promote Yourself</h1>
 
-    <textarea id="postContent" placeholder="Write something to promote yourself..."></textarea>
+    <textarea id="postContent" placeholder="Write something to promote yourself..." aria-label="Post content"></textarea>
 
-    <div class="platforms">
+    <div class="platforms" aria-label="Select platforms">
       <label><input type="checkbox" id="linkedin" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"> LinkedIn</label>
       <label><input type="checkbox" id="instagram" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"> Instagram</label>
       <label><input type="checkbox" id="facebook" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook"> Facebook</label>
@@ -108,7 +109,7 @@
 
     <button onclick="submitPost()">Generate Post</button>
 
-    <div id="output" class="output">Status: Not posted yet.</div>
+    <div id="output" class="output" aria-live="polite">Status: Not posted yet.</div>
     <button class="copy-btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
   </div>
 
