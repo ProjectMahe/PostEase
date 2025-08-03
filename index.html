@@ -2,160 +2,177 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PostEase | Promote Yourself</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promote Yourself | PostEase</title>
 
   <!-- SEO & Sharing -->
-  <meta name="description" content="PostEase helps you write and format social media posts for LinkedIn, Instagram, Facebook, and X." />
-  <meta property="og:title" content="PostEase | Promote Yourself" />
+  <meta name="description" content="Promote Yourself helps you write and format social media posts for LinkedIn, Instagram, Facebook, and X." />
+  <meta property="og:title" content="Promote Yourself | PostEase" />
   <meta property="og:description" content="Generate engaging posts for multiple platforms with ease." />
   <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/124/124010.png" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/124/124010.png" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
-
   <style>
+    :root {
+      --primary: #0077b5;
+      --accent: #e8f0fe;
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --text: #333333;
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
     body {
-      background-color: #f4f4f4;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .container {
-      max-width: 650px;
-      margin: auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+      width: 100%; max-width: 700px;
+      background: var(--card);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform var(--transition);
     }
+    .container:hover { transform: translateY(-5px); }
     h1 {
       text-align: center;
-      color: #0077b5;
+      color: var(--primary);
       margin-bottom: 20px;
+      font-size: 2rem;
+      animation: slideIn 0.8s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
     }
     textarea {
       width: 100%;
-      height: 150px;
+      min-height: 160px;
       padding: 15px;
-      font-size: 16px;
-      border-radius: 8px;
+      border-radius: var(--radius);
       border: 1px solid #ccc;
       resize: vertical;
-      box-sizing: border-box;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color var(--transition);
     }
+    textarea:focus { border-color: var(--primary); }
     .platforms {
-      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
     }
     .platforms label {
-      margin-right: 20px;
       display: inline-flex;
       align-items: center;
-      font-size: 15px;
+      gap: 8px;
       cursor: pointer;
+      font-weight: 500;
+      transition: color var(--transition);
     }
-    .icons {
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-    }
-    button {
+    .platforms input { transform: scale(1.2); accent-color: var(--primary); cursor: pointer; }
+    .platforms label:hover { color: var(--primary); }
+    .icons { width: 22px; height: 22px; }
+    .btn {
+      display: block;
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #0077b5;
-      color: white;
-      border: none;
-      border-radius: 8px;
+      padding: 14px;
       margin-top: 10px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
     }
-    button:hover {
-      background-color: #005a8d;
+    .btn:hover { background: #005a8d; transform: scale(1.02); }
+    .copy-btn {
+      background: #444;
+      font-size: 0.9rem;
+      width: auto;
+      padding: 10px 20px;
+      margin: 15px 0 0;
     }
     .output {
       margin-top: 20px;
-      background: #e8f0fe;
-      padding: 15px;
-      border-left: 4px solid #0077b5;
-      border-radius: 8px;
+      background: var(--accent);
+      padding: 20px;
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
       white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
     }
-    .copy-btn {
-      margin-top: 10px;
-      background-color: #444;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-
   <div class="container">
     <h1>📢 Promote Yourself</h1>
-
     <textarea id="postContent" placeholder="Write something to promote yourself..." aria-label="Post content"></textarea>
-
     <div class="platforms" aria-label="Select platforms">
-      <label><input type="checkbox" id="linkedin" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"> LinkedIn</label>
-      <label><input type="checkbox" id="instagram" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"> Instagram</label>
-      <label><input type="checkbox" id="facebook" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook"> Facebook</label>
-      <label><input type="checkbox" id="x" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X"> X (Twitter)</label>
+      <label><input type="checkbox" id="linkedin" /><img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"> LinkedIn</label>
+      <label><input type="checkbox" id="instagram" /><img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"> Instagram</label>
+      <label><input type="checkbox" id="facebook" /><img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook"> Facebook</label>
+      <label><input type="checkbox" id="x" /><img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X"> X</label>
     </div>
-
-    <button onclick="submitPost()">Generate Post</button>
-
+    <button class="btn" id="generateBtn">Generate Post</button>
+    <button class="btn copy-btn hidden" id="copyBtn">📋 Copy to Clipboard</button>
     <div id="output" class="output" aria-live="polite">Status: Not posted yet.</div>
-    <button class="copy-btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
   </div>
 
   <script>
-    function formatPost(platform, text) {
-      const templates = {
-        linkedin: `🔗 LinkedIn Post\n\n${text}\n\n#LinkedIn #Career #Networking`,
-        instagram: `📸 Instagram Post\n\n${text}\n\n#InstaDaily #Motivation #ContentCreator`,
-        facebook: `📘 Facebook Post\n\n${text}\n\n👍 Like • Share • Comment`,
-        x: `🐦 X (Twitter) Post\n\n${text}\n\n#XPost #JustShared`
-      };
-      return templates[platform] || "";
-    }
+    const generateBtn = document.getElementById('generateBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const outputEl = document.getElementById('output');
 
-    function submitPost() {
-      const text = document.getElementById("postContent").value.trim();
-      const output = document.getElementById("output");
-      const selectedPlatforms = Array.from(document.querySelectorAll(".platforms input:checked"))
-        .map(input => input.id);
+    const templates = {
+      linkedin: text => `🔗 LinkedIn Post\n\n${text}\n\n#LinkedIn #Career #Networking`,
+      instagram: text => `📸 Instagram Post\n\n${text}\n\n#InstaDaily #Motivation #ContentCreator`,
+      facebook: text => `📘 Facebook Post\n\n${text}\n\n👍 Like • Share • Comment`,
+      x: text => `🐦 X (Twitter) Post\n\n${text}\n\n#XPost #JustShared`
+    };
 
-      if (!text) {
-        output.innerText = "❌ Please enter your content.";
-        return;
-      }
+    generateBtn.addEventListener('click', () => {
+      const text = document.getElementById('postContent').value.trim();
+      const selected = [...document.querySelectorAll('.platforms input:checked')].map(i => i.id);
+      if (!text) return showMessage('❌ Please enter your content.');
+      if (!selected.length) return showMessage('❌ Please select at least one platform.');
 
-      if (selectedPlatforms.length === 0) {
-        output.innerText = "❌ Please select at least one platform.";
-        return;
-      }
-
-      const finalOutput = selectedPlatforms
-        .map(platform => formatPost(platform, text))
+      const finalOutput = selected
+        .map(id => templates[id](text))
         .join("\n\n-------------------------------\n\n");
+      outputEl.textContent = finalOutput;
+      copyBtn.classList.remove('hidden');
+    });
 
-      output.innerText = finalOutput;
-    }
-
-    function copyToClipboard() {
-      const text = document.getElementById("output").innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.querySelector(".copy-btn");
-        btn.innerText = "✅ Copied!";
-        setTimeout(() => btn.innerText = "📋 Copy to Clipboard", 2000);
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(outputEl.textContent).then(() => {
+        copyBtn.textContent = '✅ Copied!';
+        setTimeout(() => copyBtn.textContent = '📋 Copy to Clipboard', 2000);
       });
+    });
+
+    function showMessage(msg) {
+      outputEl.textContent = msg;
+      copyBtn.classList.add('hidden');
     }
   </script>
-
 </body>
 </html>
