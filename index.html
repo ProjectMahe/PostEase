@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PostEase | Social Media Writer</title>
+  <title>PostEase | Promote Yourself</title>
 
-  <!-- SEO & Social Sharing -->
+  <!-- SEO & Sharing -->
   <meta name="description" content="PostEase helps you write and format social media posts for LinkedIn, Instagram, Facebook, and X." />
-  <meta property="og:title" content="PostEase | Social Media Writer" />
+  <meta property="og:title" content="PostEase | Promote Yourself" />
   <meta property="og:description" content="Generate engaging posts for multiple platforms with ease." />
   <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/124/124010.png" />
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/124/124010.png" />
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -95,15 +95,15 @@
 <body>
 
   <div class="container">
-    <h1 aria-label="PostEase - Social Media Writer">📢 PostEase</h1>
+    <h1>📢 Promote Yourself</h1>
 
-    <textarea id="postContent" aria-label="Post content input" placeholder="Write your content here..." required></textarea>
+    <textarea id="postContent" placeholder="Write something to promote yourself..."></textarea>
 
     <div class="platforms">
-      <label><input type="checkbox" id="linkedin" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn icon"> LinkedIn</label>
-      <label><input type="checkbox" id="instagram" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram icon"> Instagram</label>
-      <label><input type="checkbox" id="facebook" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook icon"> Facebook</label>
-      <label><input type="checkbox" id="x" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X icon"> X (Twitter)</label>
+      <label><input type="checkbox" id="linkedin" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"> LinkedIn</label>
+      <label><input type="checkbox" id="instagram" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"> Instagram</label>
+      <label><input type="checkbox" id="facebook" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook"> Facebook</label>
+      <label><input type="checkbox" id="x" /> <img class="icons" loading="lazy" src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="X"> X (Twitter)</label>
     </div>
 
     <button onclick="submitPost()">Generate Post</button>
@@ -113,32 +113,21 @@
   </div>
 
   <script>
-    // Real-time feedback
-    document.getElementById("postContent").addEventListener("input", () => {
-      const output = document.getElementById("output");
-      if (document.getElementById("postContent").value.trim()) {
-        output.innerText = "✅ Ready to generate post.";
-      } else {
-        output.innerText = "❌ Please enter your content.";
-      }
-    });
-
     function formatPost(platform, text) {
       const templates = {
-        linkedin: `🔗 **LinkedIn Post**\n\n${text}\n\n#LinkedIn #Networking #Career`,
-        instagram: `📸 **Instagram Post**\n\n${text}\n\n✨ #InstaDaily #ContentCreator #Motivation`,
-        facebook: `📘 **Facebook Post**\n\n${text}\n\n👍 Like • Share • Comment`,
-        x: `🐦 **X (Twitter) Post**\n\n${text}\n\n#XPost #JustShared`
+        linkedin: `🔗 LinkedIn Post\n\n${text}\n\n#LinkedIn #Career #Networking`,
+        instagram: `📸 Instagram Post\n\n${text}\n\n#InstaDaily #Motivation #ContentCreator`,
+        facebook: `📘 Facebook Post\n\n${text}\n\n👍 Like • Share • Comment`,
+        x: `🐦 X (Twitter) Post\n\n${text}\n\n#XPost #JustShared`
       };
       return templates[platform] || "";
     }
 
     function submitPost() {
       const text = document.getElementById("postContent").value.trim();
+      const output = document.getElementById("output");
       const selectedPlatforms = Array.from(document.querySelectorAll(".platforms input:checked"))
         .map(input => input.id);
-
-      const output = document.getElementById("output");
 
       if (!text) {
         output.innerText = "❌ Please enter your content.";
@@ -154,7 +143,7 @@
         .map(platform => formatPost(platform, text))
         .join("\n\n-------------------------------\n\n");
 
-      output.innerText = finalOutput.trim();
+      output.innerText = finalOutput;
     }
 
     function copyToClipboard() {
