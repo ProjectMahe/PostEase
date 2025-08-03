@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PostEase | Social Media Writer</title>
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
-  
-  <!-- Favicon (optional) -->
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/124/124010.png" />
 
   <style>
@@ -17,24 +15,20 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 30px;
-      color: #333;
     }
-
     .container {
-      max-width: 600px;
+      max-width: 650px;
       margin: auto;
       background: #fff;
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
     }
-
     h1 {
       text-align: center;
       color: #0077b5;
       margin-bottom: 20px;
     }
-
     textarea {
       width: 100%;
       height: 150px;
@@ -45,81 +39,71 @@
       resize: vertical;
       box-sizing: border-box;
     }
-
     .platforms {
       margin: 15px 0;
-      font-size: 16px;
     }
-
     .platforms label {
       margin-right: 20px;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-    }
-
-    button {
-      background-color: #0077b5;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #005a8d;
-    }
-
-    .output {
-      margin-top: 20px;
-      padding: 15px;
-      background: #e8f0fe;
-      border-left: 4px solid #0077b5;
-      border-radius: 6px;
       font-size: 15px;
     }
-
     .icons {
       width: 20px;
       height: 20px;
-      vertical-align: middle;
+      margin-right: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #0077b5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a8d;
+    }
+    .output {
+      margin-top: 20px;
+      background: #e8f0fe;
+      padding: 15px;
+      border-left: 4px solid #0077b5;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+    .copy-btn {
+      margin-top: 10px;
+      background-color: #444;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+
   <div class="container">
     <h1>📢 PostEase</h1>
 
-    <textarea id="postContent" placeholder="Write your post here..."></textarea>
+    <textarea id="postContent" placeholder="Write your content here..."></textarea>
 
     <div class="platforms">
-      <label>
-        <input type="checkbox" id="linkedin" />
-        <img class="icons" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
-        LinkedIn
-      </label>
-      <label>
-        <input type="checkbox" id="instagram" />
-        <img class="icons" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" />
-        Instagram
-      </label>
-      <label>
-        <input type="checkbox" id="facebook" />
-        <img class="icons" src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook" />
-        Facebook
-      </label>
+      <label><input type="checkbox" id="linkedin" /> <img class="icons" src="https://cdn-icons-png.flaticon.com/512/174/174857.png"> LinkedIn</label>
+      <label><input type="checkbox" id="instagram" /> <img class="icons" src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"> Instagram</label>
+      <label><input type="checkbox" id="facebook" /> <img class="icons" src="https://cdn-icons-png.flaticon.com/512/145/145802.png"> Facebook</label>
+      <label><input type="checkbox" id="x" /> <img class="icons" src="https://cdn-icons-png.flaticon.com/512/733/733579.png"> X (Twitter)</label>
     </div>
 
-    <button onclick="submitPost()">Post</button>
+    <button onclick="submitPost()">Generate Post</button>
 
-    <div class="output" id="output">
-      Status: Not posted yet.
-    </div>
+    <div id="output" class="output">Status: Not posted yet.</div>
+    <button class="copy-btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
   </div>
 
   <script>
@@ -127,20 +111,54 @@
       const text = document.getElementById("postContent").value.trim();
       const platforms = [];
 
-      if (document.getElementById("linkedin").checked) platforms.push("LinkedIn");
-      if (document.getElementById("instagram").checked) platforms.push("Instagram");
-      if (document.getElementById("facebook").checked) platforms.push("Facebook");
-
-      let message = "";
-
-      if (text === "" || platforms.length === 0) {
-        message = "❌ Please write something and select at least one platform.";
-      } else {
-        message = `✅ Post ready for: <strong>${platforms.join(", ")}</strong><br><br><strong>Your Content:</strong><br>${text}`;
+      if (!text) {
+        document.getElementById("output").innerText = "❌ Please enter your content.";
+        return;
       }
 
-      document.getElementById("output").innerHTML = message;
+      if (document.getElementById("linkedin").checked) platforms.push("linkedin");
+      if (document.getElementById("instagram").checked) platforms.push("instagram");
+      if (document.getElementById("facebook").checked) platforms.push("facebook");
+      if (document.getElementById("x").checked) platforms.push("x");
+
+      if (platforms.length === 0) {
+        document.getElementById("output").innerText = "❌ Please select at least one platform.";
+        return;
+      }
+
+      let finalOutput = "";
+
+      platforms.forEach(platform => {
+        let formatted = "";
+
+        switch (platform) {
+          case "linkedin":
+            formatted += `🔗 **LinkedIn Post**\n\n${text}\n\n#LinkedIn #Networking #Career`;
+            break;
+          case "instagram":
+            formatted += `📸 **Instagram Post**\n\n${text}\n\n✨ #InstaDaily #ContentCreator #Motivation`;
+            break;
+          case "facebook":
+            formatted += `📘 **Facebook Post**\n\n${text}\n\n👍 Like • Share • Comment`;
+            break;
+          case "x":
+            formatted += `🐦 **X (Twitter) Post**\n\n${text}\n\n#XPost #JustShared`;
+            break;
+        }
+
+        finalOutput += formatted + "\n\n-------------------------------\n\n";
+      });
+
+      document.getElementById("output").innerText = finalOutput.trim();
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById("output").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("📋 Post content copied to clipboard!");
+      });
     }
   </script>
+
 </body>
 </html>
